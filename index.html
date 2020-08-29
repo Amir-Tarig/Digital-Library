@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="library.css">
+    <title>Digital Library</title>
+</head>
+<body>
+    <div class="cover">
+        <h1 class="header">Digital Library</h1>
+        <div class="form-container">
+            <form class="form"> 
+                <div class="group one">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+        
+                <div class="group two">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+        
+                <div class="group three">
+                    <label for="pages">Book Pages</label>
+                    <input type="number" id="pages" name="pages" required>
+                </div>
+                
+                <div class="group four">
+                    <p>Hava You Read The Book?</p>
+                    <input type="radio" id="Read" name="isRead" value ="yes">
+                    <label for="isRead">Yes</label><br>
+                    
+                    <input type="radio" id="notRead" name="isRead" value ="no">
+                    <label for="notRead">No</label><br>
+                </div>
+        
+                <div class="btn five">
+                    <button id="btn" type="submit">Submit</button>
+                </div>
+            </form>
+            
+        </div>
+        
+        <div class="container"></div>
+        <a  class="addbtn" href="">+NEW BOOK</a>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
