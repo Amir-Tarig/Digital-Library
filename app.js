@@ -1,8 +1,8 @@
 const books = [
-    {title:"In Search of Lost Time ",author:"Marcel Proust",pages:499,isRead:"no"},
-    {title:"The Great Gatsby",author:"F. Scott Fitzgerald",pages:199,isRead:"yes"},
-    {title:"Don Quixote",author:" Miguel de Cervantes",pages:399,isRead:"no"},
-    {title:"Ulysses ",author:"James Joyce",pages:400,isRead:"yes"}
+    {title:"In Search of Lost Time ",author:"Marcel Proust",pages:499,isRead:""},
+    {title:"The Great Gatsby",author:"F. Scott Fitzgerald",pages:199,isRead:""},
+    {title:"Don Quixote",author:" Miguel de Cervantes",pages:399,isRead:""},
+    {title:"Ulysses ",author:"James Joyce",pages:400,isRead:""}
 ];
 
 class Book{
@@ -24,7 +24,7 @@ function addBook(book){
      <span>${book.title}</span>
      <span>By</span>
      <span>${book.author}</span>
-     <button class='but'>READ</button>`;
+     <button class='sbtn'>READ</button>`;
      container.appendChild(div);
 }
 
@@ -33,69 +33,79 @@ function displayBooks (){
         addBook(book);
     });
 }
-
+//clear the form fields after submition
 function clear(){
     document.querySelector('#title').value ='';
     document.querySelector('#author').value ='';
     document.querySelector('#pages').value ='';
+    document.querySelector('#isRead').checked = false;
 }
 
+//function checkBox(){
+//    const btn = document.getElementsByClassName("sbtn")
+//    const Read = document.querySelector('#isRead');
+//    if(Read.checked === false){
+//        
+//    }
+//}
+//checkBox()
 
-
-
-
-
+ //function to toggle the book READ/NOT READ status
+ function toggleButton(el){
+    if(el.classList.contains('sbtn')){
+        if(el.innerHTML == 'READ'){
+            el.innerHTML = 'NOT READ';
+            el.style.background = 'red';
+        }else{
+            el.innerHTML = 'READ';
+            el.style.background = 'green';
+        }
+    }
+}
+//eventListener for the two book buttons 
+const cont = document.querySelector('.container')
+cont.addEventListener('click', function(e) {
+toggleButton(e.target);
+deleteBook(e.target);
+});
 
 //add event to display the book
 document.addEventListener('DOMContentLoaded', displayBooks);
-//event to add a book
+ //event to add a book
     document.querySelector('.form').addEventListener('submit', (e) =>{
         e.preventDefault();
-       
         const title = document.querySelector('#title').value;
         const author = document.querySelector('#author').value;
         const pages = document.querySelector('#pages').value;
-        const isRead = document.querySelectorAll('input[name="isRead"]')
-       
-
-
+        const isRead = document.querySelector('#isRead').checked;
+        
         const newBook = new Book(title, author,pages,isRead);
-        const index = books.findIndex(book => book.title == newBook.title);
+        const index = books.findIndex(book => book.title == newBook.title); 
         if(index === -1){
             addBook(newBook);
             books.push(newBook);
         }else{
             alert('This Book is exists already');
         }
+
+        const btns = Array.from(document.getElementsByClassName("sbtn"));
+        const theLastButton = btns.slice(-1)[0];
         
-       // newBook.isRead.forEach(radio =>{
-       //         if(radio.value == 'no'){
-       //             button.textContent = "Not Read"
-       //             button.style.backgroundColor = 'red'
-       //         }
-       //     
-       // });
+        if(!isRead){
+            theLastButton.innerHTML = 'NOT READ';
+            theLastButton.style.background = 'red';
+        }
         clear();
     });
 
 
-  //  function toggleButton(el){
-  //      if(el.classList.contains('button')){
-  //          el.addEventListener('click',function() {
-  //              el.classList.toggle('newClass');
-  //              (el.innerHTML === 'READ')? el.innerHTML = 'NOT READ': el.innerHTML = 'READ';
-  //          })
-  //      }
-  //  }
-//
-  // const cont = document.querySelector('.container')
-  // cont.addEventListener('click', function(e) {
-  //  toggleButton(e.target);
-  // });
-   
-    const buttons = document.querySelectorAll('.but');
-    console.log(buttons)
-        for(let i = 0; i < buttons.length; i++){
-            console.log(i);
+    //function to remove a book from the list 
+    function deleteBook(arg){
+        if(arg.classList.contains('delete')){
+            arg.parentElement.remove();
         }
-    
+    }
+
+   
+   
+  
