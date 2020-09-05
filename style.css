@@ -97,6 +97,9 @@ body{
    
 }
 
+.radio{
+    margin: 10px;
+}
 
 .form{
     position: absolute;
