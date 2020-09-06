@@ -1,7 +1,6 @@
     const read = document.getElementById('Read');
-    console.log(read.value)
     const notRead = document.getElementById('notRead')
-    console.log(notRead.value)
+
     class Book{
         constructor(title,author,pages,isRead){
             this.title = title;
@@ -69,7 +68,7 @@
         document.querySelector('#title').value ='';
         document.querySelector('#author').value ='';
         document.querySelector('#pages').value ='';
-        document.getElementsByName('isRead').value = false;
+        document.getElementsByName('isRead').checked = false;
     }
 
     //function to toggle the book READ/NOT READ status
@@ -85,17 +84,6 @@
         }
     }
 
-
-
-   function whatever(){
-     const isRead = document.getElementsByName('isRead');
-     console.log(isRead.checked)
-   }
-   
-  // whatever();
-
-
-
     //add event to display the book
     document.addEventListener('DOMContentLoaded', displayBooks);
     //event to add a book
@@ -104,7 +92,7 @@
             books = getBooks();
             const title = document.querySelector('#title').value;
             const author = document.querySelector('#author').value;
-            const pages = document.querySelector('#pages');
+            const pages = document.querySelector('#pages').value;
             let isRead = (read.checked)? read.value : notRead.value;
             const newBook = new Book(title, author,pages,isRead);
             
@@ -113,18 +101,58 @@
                 addBook(newBook);
             }else{
                 alert('This Book is exists already');
+                return;
             }
           
-            const btns = Array.from(document.getElementsByClassName("sbtn"));
-            const theLastButton = btns.slice(-1)[0];
+            const buttons = Array.from(document.getElementsByClassName("sbtn"));
+            const theLastButton = buttons.slice(-1)[0];
             if(notRead.checked){
-                //theLastButton.innerHTML = 'NOT READ';
                 theLastButton.style.background = 'red';
+                //notRead.style.background = 'red';
+                //localStorage.setItem('theLastButton', JSON.stringify(theLastButton));
             }
+            //addBook(newBook);
             books.push(newBook);
             addToStorage(newBook);
             clear();
         });
+
+        function buttonStatus(){
+            window.addEventListener('DOMContentLoaded', function() {
+                const buttons = Array.from(document.querySelectorAll('.sbtn'));
+                buttons.forEach((button, index) => {
+                        if((button.textContent === 'NOT READ')){
+                             buttons[index].style.background = 'red';
+                        }
+                });
+              });
+       }
+       buttonStatus();
+       
+       function readStatus(){
+            books = getBooks();
+            //console.log(books)
+            window.addEventListener('DOMContentLoaded', function() {
+                const buttons = Array.from(document.querySelectorAll('.sbtn'));
+                buttons.forEach((button, index) =>{
+                    button.addEventListener('click',() =>{
+                        if(button.textContent === 'READ'){
+                            books[index].isRead = 'NOT READ';
+                            button.style.background = 'red';
+                            console.log( books[index].isRead);
+                            localStorage.setItem('books', JSON.stringify(books));
+                        }else{
+                            button.textContent === 'READ';
+                            books[index].isRead = 'READ';
+                            console.log( books[index].isRead);
+                            localStorage.setItem('books', JSON.stringify(books));
+                        }
+                    })
+                });
+            });
+           // localStorage.setItem('books', JSON.stringify(books));
+       }
+       readStatus()
 
         //function to remove a book from the list 
         function deleteBook(arg){
