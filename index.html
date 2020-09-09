@@ -10,39 +10,39 @@
 <body>
     <div class="cover">
         <h1 class="header">Digital Library</h1>
+        <div class="container"></div>
         <div class="form-container">
             <form class="form"> 
-                <div class="group one">
+                <div class="group div1">
                     <label for="title">Title</label>
                     <input type="text" id="title" name="title" required>
                 </div>
         
-                <div class="group two">
+                <div class="group div2 ">
                     <label for="author">Author</label>
                     <input type="text" id="author" name="author" required>
                 </div>
         
-                <div class="group three">
+                <div class="group div3 ">
                     <label for="pages">Book Pages</label>
                     <input type="number" id="pages" name="pages" required>
                 </div>
                 
-                <div class="group four">
+                <div class="group div4 ">
                     <p>Hava You Read The Book?</p>
                     <input class="radio" type="radio" value="READ" id="Read" name="isRead">YES</input>
-                    <input class="radio" type="radio" value="NOT READ" id="notRead" name="isRead">NO</input>
+                    <input class="radio" type="radio" value="UNREAD" id="notRead" name="isRead">NO</input>
                     
                 </div>
         
-                <div class="btn five">
+                <div class="btn div5 ">
                     <button id="btn" type="submit">Submit</button>
                 </div>
             </form>
             
         </div>
-        
-        <div class="container"></div>
-        <a  class="addbtn" href="">+NEW BOOK</a>
+       
+        <a class="addbtn" href="#">+NEW BOOK</a>
     </div>
     <script src="app.js"></script>
 </body>
