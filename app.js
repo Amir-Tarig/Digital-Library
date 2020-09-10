@@ -22,7 +22,7 @@
     //add new book to localStorage 
     function addToStorage(book){ 
         const books = getBooks();
-        books.push(book);
+        books.unshift(book);
         localStorage.setItem('books', JSON.stringify(books));
     }
 
@@ -53,7 +53,8 @@
         `
         <span class ="bookTitle">${book.title}</span>
         
-        <span>${book.author}</span>
+        <span>Author: ${book.author}</span>
+        <span class="">Pages: ${book.pages}</span>
         <span class="delete">X</span>
         <button class='sbtn'>${book.isRead}</button>`;
         container.appendChild(div);
@@ -112,7 +113,7 @@
                 theLastButton.style.background = 'red';
             }
             
-            books.push(newBook);
+            books.unshift(newBook);
             addToStorage(newBook);
             clear();
         });
