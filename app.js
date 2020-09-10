@@ -189,6 +189,8 @@
 
     window.addEventListener('DOMContentLoaded', () => {
         addbtn.addEventListener('click',()=>{
+            addbtn.style.opacity = 0;
+            addbtn.style. zIndex = 0;
             container.classList.add('bookContainer')
             formContainer.style.opacity = 1;
             div1.classList.add('one');
@@ -200,7 +202,7 @@
     });
 
     btnEl.addEventListener('click',() => {
-      
+         addbtn.style.opacity = 1;
             div1.classList.remove('one');
             div2.classList.remove('two');
             div3.classList.remove('three');
