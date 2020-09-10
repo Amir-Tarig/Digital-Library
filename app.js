@@ -156,7 +156,9 @@
         //function to remove a book from the list 
         function deleteBook(arg){
             if(arg.classList.contains('delete')){
+                if(confirm('Are you sure?')){
                     arg.parentElement.remove();
+                }
             }
         }
 
