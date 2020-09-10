@@ -52,10 +52,9 @@
         div.innerHTML = 
         `
         <span class ="bookTitle">${book.title}</span>
-        
-        <span>Author: ${book.author}</span>
-        <span class="">Pages: ${book.pages}</span>
+        <span>${book.author}</span>
         <span class="delete">X</span>
+        <span class="">Pages: ${book.pages}</span>
         <button class='sbtn'>${book.isRead}</button>`;
         container.appendChild(div);
         
@@ -157,10 +156,7 @@
         //function to remove a book from the list 
         function deleteBook(arg){
             if(arg.classList.contains('delete')){
-                if(confirm('Are you sure?')){
                     arg.parentElement.remove();
-                }
-                
             }
         }
 
